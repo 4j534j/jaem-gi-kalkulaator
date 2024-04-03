@@ -5,8 +5,10 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
+
 let hind;
 let kogus;
+
 // riigid map
 const riigid = {};
 riigid["Eesti"] = "1.22";
@@ -37,9 +39,31 @@ rl.question('Palun sisesta toote hind: ', (input) => {
       // inputi lopp
       console.log("---------------")
       // hind maksudeta
-      ilmaMaksuta = hind * kogus
-      console.log("Hind maksudeta: ", ilmaMaksuta)
-      console.log("Hind maksudega", riigid[riik] * ilmaMaksuta)
-    });
-  });
+        const hindMaksudega = ilmaMaksuta * riigid[riik]
+        console.log("Kogu hind  maksudega: ", hindMaksudega)
+
+        console.log("---------------")
+
+        const koguHind = soodustus(hindMaksudega)
+        if (koguHind !== hindMaksudega) {
+            console.log("Kogu hind soodustusega: ", koguHind)
+        }
 });
+
+function soodustus(hindMaksudega) {
+    let koguHind;
+
+    if (hindMaksudega > 10000) {
+        koguHind = hindMaksudega * 0.93;
+    } else if (hindMaksudega > 5000) {
+        koguHind = hindMaksudega * 0.95;
+    } else if (hindMaksudega > 2000) {
+        koguHind = hindMaksudega * 0.97;
+    } else if (hindMaksudega > 1000) {
+        koguHind = hindMaksudega * 0.98;
+    } else {
+        koguHind = hindMaksudega // soodustuseta
+    }
+
+    return koguHind;
+}
