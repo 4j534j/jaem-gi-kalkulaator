@@ -7,6 +7,16 @@ const rl = readline.createInterface({
 });
 let hind;
 let kogus;
+// riigid map
+const riigid = {};
+riigid["Eesti"] = "1.22";
+riigid["Iisrael"] = "1.17";
+riigid["Saksamaa"] = "1.19";
+riigid["Leedu"] = "1.21";
+riigid["Prantsusmaa"] = "1.2";
+
+
+let riik;
 //hind
 rl.question('Palun sisesta toote hind: ', (input) => {
     hind = input;
@@ -15,11 +25,21 @@ rl.question('Palun sisesta toote hind: ', (input) => {
   rl.question('Palun sisesta toote kogus: ', (input) => {
     kogus = input;
     console.log('Sisestatud kogus:', input);    
-    rl.close();
-    // inputi lopp
-    console.log("---------------")
-    // hind maksudeta
-    ilmaMaksuta = hind * kogus
-    console.log("Hind maksudeta: ", ilmaMaksuta)
+    // riik
+    console.log("-----")
+    console.log("Valikud: Eesti, Iisrael, Saksamaa, Leedu, Prantsusmaa")
+    rl.question('Palun sisesta riik: ', (input) => {
+      riik = input;
+      console.log('Sisestatud riik:', input);
+      
+      
+      rl.close();
+      // inputi lopp
+      console.log("---------------")
+      // hind maksudeta
+      ilmaMaksuta = hind * kogus
+      console.log("Hind maksudeta: ", ilmaMaksuta)
+      console.log("Hind maksudega", riigid[riik] * ilmaMaksuta)
+    });
   });
 });
