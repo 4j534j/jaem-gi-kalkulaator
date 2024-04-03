@@ -39,6 +39,7 @@ rl.question('Palun sisesta toote hind: ', (input) => {
       // inputi lopp
       console.log("---------------")
       // hind maksudeta
+      const ilmaMaksuta = kogus * hind
         const hindMaksudega = ilmaMaksuta * riigid[riik]
         console.log("Kogu hind  maksudega: ", hindMaksudega)
 
@@ -47,9 +48,10 @@ rl.question('Palun sisesta toote hind: ', (input) => {
         const koguHind = soodustus(hindMaksudega)
         if (koguHind !== hindMaksudega) {
             console.log("Kogu hind soodustusega: ", koguHind)
-        }
+          }
+        });
+    });
 });
-
 function soodustus(hindMaksudega) {
     let koguHind;
 
